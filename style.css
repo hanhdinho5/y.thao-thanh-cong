@@ -1,3 +1,10 @@
+:root{
+    --pink:#ff4d8d;
+    --soft-pink:#fff0f5;
+    --rose:#ff7aa2;
+    --text:#4b4453;
+}
+
 *{
     margin:0;
     padding:0;
@@ -6,106 +13,220 @@
 
 body{
     min-height:100vh;
+    overflow:hidden;
+
     display:flex;
     justify-content:center;
     align-items:center;
-    background:linear-gradient(
-        135deg,
-        #fff7f7,
-        #ffe4e6
-    );
-    overflow:hidden;
-    font-family:'Segoe UI',sans-serif;
+
+    background:
+    radial-gradient(circle at top left,#ffd6e7 0%,transparent 30%),
+    radial-gradient(circle at bottom right,#ffe4ef 0%,transparent 35%),
+    linear-gradient(135deg,#fff7fa,#fff0f4);
+
+    font-family:'Be Vietnam Pro',sans-serif;
+
+    position:relative;
 }
+
+/* CARD */
 
 .card{
-    width:90%;
-    max-width:700px;
-    background:rgba(255,255,255,.7);
-    backdrop-filter:blur(10px);
-    border-radius:25px;
-    padding:40px;
+    width:min(92%,680px);
+
+    background:rgba(255,255,255,.75);
+
+    backdrop-filter:blur(18px);
+
+    border:1px solid rgba(255,255,255,.8);
+
+    border-radius:32px;
+
+    padding:36px 28px;
+
     text-align:center;
-    box-shadow:0 15px 40px rgba(0,0,0,.1);
-    animation:fadeIn 2s ease;
-    z-index:2;
+
+    box-shadow:
+    0 20px 60px rgba(255,105,180,.15),
+    0 0 40px rgba(255,255,255,.5);
+
+    z-index:10;
+
+    animation:fadeUp 1.2s ease;
 }
 
-.card h1{
-    color:#d63384;
-    margin-bottom:25px;
+.bouquet{
+    font-size:90px;
+    margin-bottom:15px;
+
+    animation:float 4s ease-in-out infinite;
 }
 
-.card p{
-    margin:15px 0;
-    font-size:18px;
-    line-height:1.8;
-    color:#555;
+h1{
+    font-family:'Playfair Display',serif;
+    font-size:clamp(32px,5vw,48px);
+
+    color:var(--pink);
 }
 
-.flower{
-    font-size:60px;
-    margin-top:20px;
-    animation:float 3s ease-in-out infinite;
+.divider{
+    width:120px;
+    height:3px;
+
+    margin:20px auto 30px;
+
+    background:linear-gradient(
+        to right,
+        transparent,
+        var(--rose),
+        transparent
+    );
+
+    border-radius:999px;
 }
 
-.flowers span{
+p{
+    color:var(--text);
+
+    line-height:1.9;
+
+    font-size:17px;
+
+    margin-bottom:18px;
+}
+
+.signature{
+    margin-top:30px;
+    color:var(--pink);
+    font-weight:600;
+}
+
+/* HEARTS */
+
+.bg-hearts span{
     position:absolute;
-    top:-50px;
-    font-size:30px;
-    animation:fall linear infinite;
+
+    color:#ff7aa2;
+
+    opacity:.18;
+
+    animation:heartFloat linear infinite;
 }
 
-.flowers span:nth-child(1){
-    left:10%;
-    animation-duration:10s;
-}
-
-.flowers span:nth-child(2){
-    left:30%;
-    animation-duration:12s;
-}
-
-.flowers span:nth-child(3){
-    left:50%;
-    animation-duration:9s;
-}
-
-.flowers span:nth-child(4){
-    left:70%;
+.bg-hearts span:nth-child(1){
+    left:8%;
+    font-size:32px;
     animation-duration:14s;
 }
 
-.flowers span:nth-child(5){
-    left:90%;
-    animation-duration:11s;
+.bg-hearts span:nth-child(2){
+    left:28%;
+    font-size:50px;
+    animation-duration:18s;
 }
 
-@keyframes fall{
-    from{
-        transform:translateY(-100px) rotate(0deg);
-    }
-    to{
-        transform:translateY(120vh) rotate(360deg);
-    }
+.bg-hearts span:nth-child(3){
+    left:52%;
+    font-size:40px;
+    animation-duration:16s;
 }
+
+.bg-hearts span:nth-child(4){
+    left:72%;
+    font-size:60px;
+    animation-duration:20s;
+}
+
+.bg-hearts span:nth-child(5){
+    left:90%;
+    font-size:36px;
+    animation-duration:15s;
+}
+
+/* FLOWERS */
+
+.flowers{
+    position:absolute;
+
+    font-size:42px;
+
+    opacity:.65;
+
+    z-index:1;
+}
+
+.flowers.left{
+    top:80px;
+    left:20px;
+
+    transform:rotate(-15deg);
+}
+
+.flowers.right{
+    bottom:80px;
+    right:20px;
+
+    transform:rotate(15deg);
+}
+
+/* ANIMATION */
 
 @keyframes float{
+
     0%,100%{
         transform:translateY(0);
     }
+
     50%{
-        transform:translateY(-10px);
+        transform:translateY(-12px);
     }
 }
 
-@keyframes fadeIn{
+@keyframes fadeUp{
+
     from{
         opacity:0;
         transform:translateY(30px);
     }
+
     to{
         opacity:1;
         transform:translateY(0);
+    }
+}
+
+@keyframes heartFloat{
+
+    from{
+        transform:
+        translateY(110vh)
+        rotate(0deg);
+    }
+
+    to{
+        transform:
+        translateY(-120px)
+        rotate(360deg);
+    }
+}
+
+/* MOBILE */
+
+@media(max-width:600px){
+
+    .card{
+        padding:28px 22px;
+    }
+
+    .bouquet{
+        font-size:78px;
+    }
+
+    p{
+        font-size:15px;
+    }
+
+    .flowers{
+        font-size:28px;
     }
 }
